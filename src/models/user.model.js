@@ -7,14 +7,14 @@ const userSchema = new mongoose.Schema(
     email: { type: String, required: true, unique: true, lowercase: true },
     password: { type: String, required: true, minlength: 6 },
   },
-  { timestamps: true }
+  { timestamps: true, versionKey: false }
 );
 
-userSchema.methods.toJson = function(){
-    const obj = this.toObject();
-    delete obj.password;
-    return obj;
-}
+userSchema.methods.toJson = function () {
+  const obj = this.toObject();
+  delete obj.password;
+  return obj;
+};
 
 // userSchema.pre("save", async function (next) {
 //   if (!this.isModified("password")) return next();
